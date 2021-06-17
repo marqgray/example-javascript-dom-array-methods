@@ -80,6 +80,20 @@ const showMillionaires = () => {
   app.updateDOM();
 };
 
+const calculateWealth = () => {
+  const wealth: number = app.people.reduce((a, b) => {
+    const c = new Person({ ...a.data });
+    c.money = a.money + b.money;
+    return c;
+  }).money;
+
+  const wealthElement = document.createElement("div");
+  wealthElement.innerHTML = `<h3>Total Wealth: <strong>${app.formatMoney(
+    wealth
+  )}</strong></h3>`;
+  app.main.appendChild(wealthElement);
+};
+
 for (let i = 0; i < 3; i++) {
   addRandomUser();
 }
@@ -88,3 +102,4 @@ app.buttons.buttonAddUser.addEventListener("click", addRandomUser);
 app.buttons.buttonDouble.addEventListener("click", doubleMoney);
 app.buttons.buttonSort.addEventListener("click", sortByRichest);
 app.buttons.buttonShowMillionaires.addEventListener("click", showMillionaires);
+app.buttons.buttonCalculateWealth.addEventListener("click", calculateWealth);
