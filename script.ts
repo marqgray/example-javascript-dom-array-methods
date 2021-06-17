@@ -75,6 +75,11 @@ const sortByRichest = () => {
   app.updateDOM();
 };
 
+const showMillionaires = () => {
+  app.people = app.people.filter((person) => person.money >= 1000000);
+  app.updateDOM();
+};
+
 for (let i = 0; i < 3; i++) {
   addRandomUser();
 }
@@ -82,3 +87,4 @@ for (let i = 0; i < 3; i++) {
 app.buttons.buttonAddUser.addEventListener("click", addRandomUser);
 app.buttons.buttonDouble.addEventListener("click", doubleMoney);
 app.buttons.buttonSort.addEventListener("click", sortByRichest);
+app.buttons.buttonShowMillionaires.addEventListener("click", showMillionaires);
