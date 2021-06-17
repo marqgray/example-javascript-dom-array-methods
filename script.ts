@@ -41,7 +41,9 @@ const app = new (class {
     providedData.forEach((person) => {
       const element = document.createElement("div");
       element.classList.add("person");
-      element.innerHTML = `<strong>${person.name.first} ${person.name.last}</strong> ${person.money}`;
+      element.innerHTML = `<strong>${person.name.first} ${
+        person.name.last
+      }</strong> ${this.formatMoney(person.money)}`;
       this.main.appendChild(element);
     });
   }
@@ -59,8 +61,18 @@ const addRandomUser = () => {
     });
 };
 
+const doubleMoney = () => {
+  app.people = app.people.map((person) => {
+    let p = new Person({ ...person.data });
+    p.money = person.money * 2;
+    return p;
+  });
+  app.updateDOM();
+};
+
 for (let i = 0; i < 3; i++) {
   addRandomUser();
 }
 
 app.buttons.buttonAddUser.addEventListener("click", addRandomUser);
+app.buttons.buttonDouble.addEventListener("click", doubleMoney);
