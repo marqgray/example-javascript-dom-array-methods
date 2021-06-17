@@ -70,9 +70,15 @@ const doubleMoney = () => {
   app.updateDOM();
 };
 
+const sortByRichest = () => {
+  app.people.sort((a, b) => b.money - a.money);
+  app.updateDOM();
+};
+
 for (let i = 0; i < 3; i++) {
   addRandomUser();
 }
 
 app.buttons.buttonAddUser.addEventListener("click", addRandomUser);
 app.buttons.buttonDouble.addEventListener("click", doubleMoney);
+app.buttons.buttonSort.addEventListener("click", sortByRichest);
